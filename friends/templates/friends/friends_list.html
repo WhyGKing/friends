@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title%} List {% endblock %}
+{% block content %}
+
+<div class = "btn-group">
+    <a href="{% url 'add' %}" class="btn btn-info">Add Bookmark</a>
+</div>
+<p></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">이름</th>
+            <th scope="col">전화번호</th>
+            <th scope="col">주소</th>
+            <th scope="col">생일</th>
+            <th scope="col">수정</th>
+            <th scope="col">삭제</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for friend in object_list %}    <!--기능태그의 의미-->
+            <tr>
+               <td>{{forloop.counter}}</td>  <!-- 출력의 의미 -->
+                <td><a href="{% url 'detail' pk=friend.id %}">{{friend.name}}</a></td>
+                <td>{{friend.phone}} </td>
+                <td>{{friend.addr}} </td>
+                <td>{{friend.birthday}} </td>
+                <td><a href="{% url 'update' pk=friend.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                <td><a href="{% url 'delete' pk=friend.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}tml>
